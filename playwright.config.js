@@ -2,9 +2,12 @@
 // basic playwright config
 const { defineConfig } = require('@playwright/test');
 
-module.exports = defineConfig({
+// playwright.config.js
+module.exports = {
   use: {
-    headless: true,
+    headless: false,   // 👈 Turn OFF headless mode
+    viewport: null,
+    ignoreHTTPSErrors: true,
   },
-  reporter: [['html']]
-});
+};
+
