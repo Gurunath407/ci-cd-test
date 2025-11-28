@@ -2,6 +2,6 @@
 const { test, expect } = require('@playwright/test');
 
 test('homepage loads', async ({ page }) => {
-  await page.goto('https://example.com');
-  await expect(page).toHaveTitle(/Example/);
+  await page.goto('https://www.aseuro.in');
+  await expect(page).toHaveTitle(/Aseuro Technologies/);
 });
