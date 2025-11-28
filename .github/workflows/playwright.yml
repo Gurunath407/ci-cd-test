@@ -1,0 +1,39 @@
+name: Playwright Tests (Windows)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: windows-latest   # ⬅️ Run on Windows runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      # Install Playwright browsers (Windows doesn't need --with-deps)
+      - name: Install Playwright Browsers
+        run: npx playwright install
+
+      - name: Run Playwright Tests
+        run: npx playwright test
+
+      # Upload Playwright report as artifact
+      - name: Upload Playwright HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
